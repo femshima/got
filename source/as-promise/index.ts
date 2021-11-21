@@ -35,6 +35,7 @@ export default function asPromise<T>(firstRequest?: Request): CancelableRequest<
 
 		onCancel.shouldReject = false;
 		onCancel(() => {
+			globalRequest.emit("error");
 			reject(new CancelError(globalRequest));
 		});
 
